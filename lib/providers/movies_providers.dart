@@ -19,14 +19,14 @@ class MoviesProvider extends ChangeNotifier {
   int _page = 0;
 
   final debouncer = Debouncer(
-    duration: Duration(milliseconds: 500),
+    duration: const Duration(milliseconds: 500),
   );
 
   final StreamController<List<Movie>> _suggestionStreamController =
-      new StreamController.broadcast();
+      StreamController.broadcast();
 
   Stream<List<Movie>> get suggestionStream =>
-      this._suggestionStreamController.stream;
+      _suggestionStreamController.stream;
 
   MoviesProvider() {
     getOnDisplayMovies();
@@ -77,7 +77,7 @@ class MoviesProvider extends ChangeNotifier {
       {
         'language': _language,
         'api_key': _apiKey,
-        'query': '$query',
+        'query': query,
       },
     );
     final response = await http.get(url);

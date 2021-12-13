@@ -12,7 +12,7 @@ class MovieSearchDelegate extends SearchDelegate {
     return [
       IconButton(
         onPressed: () => query = '',
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
       ),
     ];
   }
@@ -43,7 +43,7 @@ class MovieSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    return Text("buildResults");
+    return const Text("buildResults");
   }
 
   @override
