@@ -88,12 +88,14 @@ class MoviesProvider extends ChangeNotifier {
   void getSuggestionByQuery(String searchTerm) {
     debouncer.value = '';
     debouncer.onValue = (value) async {
-      final results = await this.searchMovie(value);
-      this._suggestionStreamController.add(results);
+      final results = await searchMovie(value);
+      _suggestionStreamController.add(results);
     };
-    final timer = Timer.periodic(Duration(milliseconds: 300), (timer) {
+    final timer = Timer.periodic(const Duration(milliseconds: 300), (timer) {
       debouncer.value = searchTerm;
     });
-    Future.delayed(Duration(milliseconds: 301)).then((_) => timer.cancel());
+    Future.delayed(
+      const Duration(milliseconds: 301),
+    ).then((_) => timer.cancel());
   }
 }
